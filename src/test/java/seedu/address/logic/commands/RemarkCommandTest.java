@@ -1,21 +1,17 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+//CHECKSTYLE.OFF: AvoidStarImport
+import static org.junit.jupiter.api.Assertions.*;
+//CHECKSTYLE.OFF: AvoidStarImport
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -31,7 +27,7 @@ public class RemarkCommandTest {
 
     private static final String REMARK_STUB = "Some remark";
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_addRemarkUnfilteredList_success() {
@@ -56,7 +52,8 @@ public class RemarkCommandTest {
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON,
                 new Remark(editedPerson.getRemark().toString()));
 
-        String expectedMessage = String.format(RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS, Messages.format(editedPerson));
+        String expectedMessage = String.format(
+                RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS, Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
@@ -114,23 +111,23 @@ public class RemarkCommandTest {
         // same values -> returns true
         RemarkCommand commandWithSameValues = new RemarkCommand(INDEX_FIRST_PERSON,
                 new Remark(VALID_REMARK_AMY));
-        assertTrue(standardCommand.equals(commandWithSameValues));
+        assertEquals(standardCommand, commandWithSameValues);
 
         // same object -> returns true
-        assertTrue(standardCommand.equals(standardCommand));
+        assertEquals(standardCommand, standardCommand);
 
         // null -> returns false
-        assertFalse(standardCommand.equals(null));
+        assertNotEquals(null, standardCommand);
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertNotEquals(standardCommand, new ClearCommand());
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new RemarkCommand(INDEX_SECOND_PERSON,
-                new Remark(VALID_REMARK_AMY))));
+        assertNotEquals(standardCommand, new RemarkCommand(INDEX_SECOND_PERSON,
+                new Remark(VALID_REMARK_AMY)));
 
         // different remark -> returns false
-        assertFalse(standardCommand.equals(new RemarkCommand(INDEX_FIRST_PERSON,
-                new Remark(VALID_REMARK_BOB))));
+        assertNotEquals(standardCommand, new RemarkCommand(INDEX_FIRST_PERSON,
+                new Remark(VALID_REMARK_BOB)));
     }
 }

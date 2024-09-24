@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+//CHECKSTYLE.OFF: AvoidStarImport
 import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 

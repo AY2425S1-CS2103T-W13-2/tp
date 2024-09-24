@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+//CHECKSTYLE.OFF: AvoidStarImport
 import seedu.address.logic.commands.*;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
