@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 
 /**
  * An UI component that displays detailed information of a {@code Person} in the right pane of the window.
@@ -44,6 +45,10 @@ public class PersonDetailCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private LogListPanel logsListPanel;
+    @FXML
+    private StackPane logsListPanelPlaceHolder;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -68,5 +73,8 @@ public class PersonDetailCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        this.logsListPanel = new LogListPanel(person.getLogs());
+        logsListPanelPlaceHolder.getChildren().setAll(logsListPanel.getRoot());
     }
 }
