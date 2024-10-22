@@ -1,5 +1,6 @@
 package careconnect.storage;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -10,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import careconnect.commons.exceptions.IllegalValueException;
+import careconnect.model.log.Log;
 import careconnect.model.person.Address;
 import careconnect.model.person.Email;
 import careconnect.model.person.Name;
@@ -29,20 +31,25 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final ArrayList<JsonAdaptedLog> logs = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                             @JsonProperty("logs") ArrayList<JsonAdaptedLog> logs) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         if (tags != null) {
             this.tags.addAll(tags);
+        }
+        if (this.logs != null) {
+            this.logs.addAll(logs);
         }
     }
 
@@ -57,6 +64,9 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        logs.addAll(source.getLogs().stream()
+                .map(JsonAdaptedLog::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -66,8 +76,12 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
+        final ArrayList<Log> personLogs = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
+        }
+        for (JsonAdaptedLog log : logs) {
+            personLogs.add(log.toModelType());
         }
 
         if (name == null) {
@@ -103,7 +117,8 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        final ArrayList<Log> modelLogs = new ArrayList<>(personLogs);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelLogs);
     }
 
 }
