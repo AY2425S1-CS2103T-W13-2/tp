@@ -1,5 +1,7 @@
 package careconnect.ui;
 
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.function.Consumer;
 
@@ -17,6 +19,7 @@ import javafx.scene.layout.Region;
 public class LogCard extends UiPart<Region> {
 
     private static final String FXML = "LogCard.fxml";
+    private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM yyyy HH:mm");
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -44,7 +47,7 @@ public class LogCard extends UiPart<Region> {
         super(FXML);
         this.log = log;
         id.setText(displayedIndex + ". ");
-        date.setText(log.getDate().toString());
+        date.setText(simpleDateFormat.format(log.getDate()));
         remark.setText(log.getRemark());
     }
 }

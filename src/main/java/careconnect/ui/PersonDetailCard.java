@@ -74,7 +74,7 @@ public class PersonDetailCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        this.logsListPanel = new LogListPanel(person.getLogs());
+        logsListPanel = new LogListPanel(person.getLogs());
         logsListPanelPlaceHolder.getChildren().setAll(logsListPanel.getRoot());
     }
 }
