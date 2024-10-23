@@ -3,6 +3,7 @@ package careconnect.logic.commands;
 import static careconnect.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -97,7 +98,8 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, personToEdit.getLogs());
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                new ArrayList(personToEdit.getLogs()));
     }
 
     @Override

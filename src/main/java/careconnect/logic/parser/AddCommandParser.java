@@ -44,6 +44,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
+        // Initialises logs to an empty list when person is first added
         ArrayList<Log> logs = new ArrayList<>();
 
         Person person = new Person(name, phone, email, address, tagList, logs);

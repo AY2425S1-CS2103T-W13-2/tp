@@ -18,7 +18,8 @@ class JsonAdaptedLog {
     private final String remark;
 
     /**
-     * Constructs a {@code JsonAdaptedLog} with the given {@code logName}.
+     * Constructs a {@code JsonAdaptedLog} with the given
+     * {@code date} and {@code remark}.
      */
     @JsonCreator
     public JsonAdaptedLog(

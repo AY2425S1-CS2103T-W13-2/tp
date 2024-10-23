@@ -65,8 +65,12 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
-    public ArrayList<Log> getLogs() {
-        return this.logs;
+    /**
+     * Returns an immutable log list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public List<Log> getLogs() {
+        return Collections.unmodifiableList(this.logs);
     }
 
     /**

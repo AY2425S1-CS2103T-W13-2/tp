@@ -1,6 +1,7 @@
 package careconnect.ui;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
@@ -12,7 +13,7 @@ import careconnect.commons.core.LogsCenter;
 import careconnect.model.log.Log;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of logs.
  */
 public class LogListPanel extends UiPart<Region> {
     private static final String FXML = "LogListPanel.fxml";
@@ -22,9 +23,9 @@ public class LogListPanel extends UiPart<Region> {
     private ListView<Log> logListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code LogsListPanel} with the given immutable {@code List}.
      */
-    public LogListPanel(ArrayList<Log> logs) {
+    public LogListPanel(List<Log> logs) {
         super(FXML);
         logListView.setItems(FXCollections.observableList(logs));
         logListView.setCellFactory(cell -> new LogListViewCell());

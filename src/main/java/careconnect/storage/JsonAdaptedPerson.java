@@ -118,6 +118,7 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final ArrayList<Log> modelLogs = new ArrayList<>(personLogs);
+
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelLogs);
     }
 
