@@ -6,6 +6,14 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.logging.Logger;
 
+import careconnect.commons.core.GuiSettings;
+import careconnect.commons.core.LogsCenter;
+import careconnect.logic.Logic;
+import careconnect.logic.autocompleter.exceptions.AutocompleteException;
+import careconnect.logic.commands.CommandResult;
+import careconnect.logic.commands.exceptions.CommandException;
+import careconnect.logic.parser.exceptions.ParseException;
+import careconnect.model.person.Person;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -15,22 +23,14 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-import careconnect.commons.core.GuiSettings;
-import careconnect.commons.core.LogsCenter;
-import careconnect.logic.Logic;
-import careconnect.logic.autocompleter.exceptions.AutocompleteException;
-import careconnect.logic.commands.CommandResult;
-import careconnect.logic.commands.exceptions.CommandException;
-import careconnect.logic.parser.exceptions.ParseException;
-import careconnect.model.person.Person;
-
 
 /**
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
-    private static final String UG_URL = "https://ay2425s1-cs2103t-w13-2.github.io/tp/UserGuide.html#quick-start";
+    private static final String UG_URL = "https://ay2425s1-cs2103t-w13-2.github.io/tp/UserGuide"
+            + ".html#quick-start";
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -128,7 +128,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), this::showSelectedPerson);
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(),
+                this::showSelectedPerson);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -139,7 +140,8 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand, this::autocompleteCommand, this::validateSyntax);
+        CommandBox commandBox = new CommandBox(this::executeCommand, this::autocompleteCommand,
+                this::validateSyntax);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -192,7 +194,8 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText) throws CommandException,
+            ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());

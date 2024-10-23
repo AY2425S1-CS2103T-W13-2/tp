@@ -3,13 +3,12 @@ package careconnect.ui;
 import java.util.List;
 import java.util.logging.Logger;
 
+import careconnect.commons.core.LogsCenter;
+import careconnect.model.log.Log;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-
-import careconnect.commons.core.LogsCenter;
-import careconnect.model.log.Log;
 
 /**
  * Panel containing the list of logs.
@@ -31,7 +30,8 @@ public class LogListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code
+     * PersonCard}.
      */
     class LogListViewCell extends ListCell<Log> {
 

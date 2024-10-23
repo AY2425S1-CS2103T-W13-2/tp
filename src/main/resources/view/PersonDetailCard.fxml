@@ -9,7 +9,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<HBox xmlns:fx="http://javafx.com/fxml/1" id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17">
+<HBox xmlns:fx="http://javafx.com/fxml/1" id="cardPane" fx:id="cardPane"
+      xmlns="http://javafx.com/javafx/17">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150"/>
@@ -43,7 +44,8 @@
                 <padding>
                     <Insets left="10.0" top="10.0"/>
                 </padding>
-                <StackPane fx:id="logsListPanelPlaceHolder" styleClass="pane-without-border" VBox.vgrow="ALWAYS"/>
+                <StackPane fx:id="logsListPanelPlaceHolder" styleClass="pane-without-border"
+                           VBox.vgrow="ALWAYS"/>
             </VBox>
         </VBox>
         <rowConstraints>

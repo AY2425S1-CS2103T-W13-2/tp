@@ -18,7 +18,8 @@ public class UiPartTest {
     private static final String MISSING_FILE_PATH = "UiPartTest/missingFile.fxml";
     private static final String INVALID_FILE_PATH = "UiPartTest/invalidFile.fxml";
     private static final String VALID_FILE_PATH = "UiPartTest/validFile.fxml";
-    private static final String VALID_FILE_WITH_FX_ROOT_PATH = "UiPartTest/validFileWithFxRoot.fxml";
+    private static final String VALID_FILE_WITH_FX_ROOT_PATH = "UiPartTest/validFileWithFxRoot" +
+            ".fxml";
     private static final TestFxmlObject VALID_FILE_ROOT = new TestFxmlObject("Hello World!");
 
     @TempDir
@@ -27,21 +28,24 @@ public class UiPartTest {
     @Test
     public void constructor_nullFileUrl_throwsNullPointerException() {
         Assert.assertThrows(NullPointerException.class, () -> new TestUiPart<Object>((URL) null));
-        Assert.assertThrows(NullPointerException.class, () -> new TestUiPart<Object>((URL) null, new Object()));
+        Assert.assertThrows(NullPointerException.class, () -> new TestUiPart<Object>((URL) null,
+                new Object()));
     }
 
     @Test
     public void constructor_missingFileUrl_throwsAssertionError() throws Exception {
         URL missingFileUrl = new URL(testFolder.toUri().toURL(), MISSING_FILE_PATH);
         Assert.assertThrows(AssertionError.class, () -> new TestUiPart<Object>(missingFileUrl));
-        Assert.assertThrows(AssertionError.class, () -> new TestUiPart<Object>(missingFileUrl, new Object()));
+        Assert.assertThrows(AssertionError.class, () -> new TestUiPart<Object>(missingFileUrl,
+                new Object()));
     }
 
     @Test
     public void constructor_invalidFileUrl_throwsAssertionError() {
         URL invalidFileUrl = getTestFileUrl(INVALID_FILE_PATH);
         Assert.assertThrows(AssertionError.class, () -> new TestUiPart<Object>(invalidFileUrl));
-        Assert.assertThrows(AssertionError.class, () -> new TestUiPart<Object>(invalidFileUrl, new Object()));
+        Assert.assertThrows(AssertionError.class, () -> new TestUiPart<Object>(invalidFileUrl,
+                new Object()));
     }
 
     @Test
@@ -59,20 +63,25 @@ public class UiPartTest {
 
     @Test
     public void constructor_nullFileName_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> new TestUiPart<Object>((String) null));
-        Assert.assertThrows(NullPointerException.class, () -> new TestUiPart<Object>((String) null, new Object()));
+        Assert.assertThrows(NullPointerException.class,
+                () -> new TestUiPart<Object>((String) null));
+        Assert.assertThrows(NullPointerException.class,
+                () -> new TestUiPart<Object>((String) null, new Object()));
     }
 
     @Test
     public void constructor_missingFileName_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> new TestUiPart<Object>(MISSING_FILE_PATH));
-        Assert.assertThrows(NullPointerException.class, () -> new TestUiPart<Object>(MISSING_FILE_PATH, new Object()));
+        Assert.assertThrows(NullPointerException.class,
+                () -> new TestUiPart<Object>(MISSING_FILE_PATH));
+        Assert.assertThrows(NullPointerException.class,
+                () -> new TestUiPart<Object>(MISSING_FILE_PATH, new Object()));
     }
 
     @Test
     public void constructor_invalidFileName_throwsAssertionError() {
         Assert.assertThrows(AssertionError.class, () -> new TestUiPart<Object>(INVALID_FILE_PATH));
-        Assert.assertThrows(AssertionError.class, () -> new TestUiPart<Object>(INVALID_FILE_PATH, new Object()));
+        Assert.assertThrows(AssertionError.class, () -> new TestUiPart<Object>(INVALID_FILE_PATH,
+                new Object()));
     }
 
     private URL getTestFileUrl(String testFilePath) {
@@ -84,7 +93,8 @@ public class UiPartTest {
 
     /**
      * UiPart used for testing.
-     * It should only be used with invalid FXML files or the valid file located at {@link VALID_FILE_PATH}.
+     * It should only be used with invalid FXML files or the valid file located at
+     * {@link VALID_FILE_PATH}.
      */
     private static class TestUiPart<T> extends UiPart<T> {
 

@@ -8,12 +8,13 @@ import careconnect.model.Model;
 import careconnect.model.ModelManager;
 
 public class HelpCommandTest {
-    private Model model = new ModelManager();
-    private Model expectedModel = new ModelManager();
+    private final Model model = new ModelManager();
+    private final Model expectedModel = new ModelManager();
 
     @Test
     public void execute_help_success() {
         CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false);
-        CommandTestUtil.assertCommandSuccess(new HelpCommand(), model, expectedCommandResult, expectedModel);
+        CommandTestUtil.assertCommandSuccess(new HelpCommand(), model, expectedCommandResult,
+                expectedModel);
     }
 }

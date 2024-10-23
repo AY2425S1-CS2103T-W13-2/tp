@@ -6,6 +6,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Comparator;
 
+import careconnect.model.person.Person;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -13,10 +14,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 
-import careconnect.model.person.Person;
-
 /**
- * An UI component that displays detailed information of a {@code Person} in the right pane of the window.
+ * An UI component that displays detailed information of a {@code Person} in the right pane of
+ * the window.
  */
 public class PersonDetailCard extends UiPart<Region> {
 
@@ -27,7 +27,8 @@ public class PersonDetailCard extends UiPart<Region> {
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
+     * @see
+     * <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
     public final Person person;
@@ -65,7 +66,8 @@ public class PersonDetailCard extends UiPart<Region> {
                 URI link = new URI("https://www.google.com/maps/place/" + q);
                 Desktop.getDesktop().browse(link);
             } catch (URISyntaxException | IOException ex) {
-                // TODO: handle this properly. we should show a ui to inform the user that something has gone wrong
+                // TODO: handle this properly. we should show a ui to inform the user that
+                //  something has gone wrong
                 throw new RuntimeException(ex);
             }
         });

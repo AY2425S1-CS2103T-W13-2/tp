@@ -40,14 +40,14 @@ public class CollectionUtilTest {
         assertNullPointerExceptionThrown((Object[]) null);
 
         // confirms nulls inside lists in the argument list are not considered
-        List<Object> containingNull = Arrays.asList((Object) null);
+        List<Object> containingNull = Collections.singletonList(null);
         assertNullPointerExceptionNotThrown(containingNull, new Object());
     }
 
     @Test
     public void requireAllNonNullCollection() {
         // lists containing nulls in the front
-        assertNullPointerExceptionThrown(Arrays.asList((Object) null));
+        assertNullPointerExceptionThrown(Collections.singletonList(null));
         assertNullPointerExceptionThrown(Arrays.asList(null, new Object(), ""));
 
         // lists containing nulls in the middle
@@ -66,10 +66,10 @@ public class CollectionUtilTest {
 
         // list with all non-null elements
         assertNullPointerExceptionNotThrown(Arrays.asList(new Object(), "ham", Integer.valueOf(1)));
-        assertNullPointerExceptionNotThrown(Arrays.asList(new Object()));
+        assertNullPointerExceptionNotThrown(List.of(new Object()));
 
         // confirms nulls inside nested lists are not considered
-        List<Object> containingNull = Arrays.asList((Object) null);
+        List<Object> containingNull = Collections.singletonList(null);
         assertNullPointerExceptionNotThrown(Arrays.asList(containingNull, new Object()));
     }
 
@@ -83,7 +83,8 @@ public class CollectionUtilTest {
     }
 
     /**
-     * Asserts that {@code CollectionUtil#requireAllNonNull(Object...)} throw {@code NullPointerException}
+     * Asserts that {@code CollectionUtil#requireAllNonNull(Object...)} throw {@code
+     * NullPointerException}
      * if {@code objects} or any element of {@code objects} is null.
      */
     private void assertNullPointerExceptionThrown(Object... objects) {
@@ -91,7 +92,8 @@ public class CollectionUtilTest {
     }
 
     /**
-     * Asserts that {@code CollectionUtil#requireAllNonNull(Collection<?>)} throw {@code NullPointerException}
+     * Asserts that {@code CollectionUtil#requireAllNonNull(Collection<?>)} throw {@code
+     * NullPointerException}
      * if {@code collection} or any element of {@code collection} is null.
      */
     private void assertNullPointerExceptionThrown(Collection<?> collection) {

@@ -4,11 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import javafx.collections.ObservableList;
-
 import careconnect.commons.util.ToStringBuilder;
 import careconnect.model.person.Person;
 import careconnect.model.person.UniquePersonList;
+import javafx.collections.ObservableList;
 
 /**
  * Wraps all data at the address-book level
@@ -19,12 +18,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniquePersonList persons;
 
     /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
+     * The 'unusual' code block below is a non-static initialization block, sometimes used to
+     * avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
      *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
+     * Note that non-static init blocks are not recommended to use. There are other ways to avoid
+     *  duplication
      *   among constructors.
-     */ {
+     */
+    {
         persons = new UniquePersonList();
     }
 
@@ -79,7 +81,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing
+     * person in the address book.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);

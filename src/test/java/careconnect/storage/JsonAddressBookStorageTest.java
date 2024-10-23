@@ -17,7 +17,8 @@ import careconnect.testutil.Assert;
 import careconnect.testutil.TypicalPersons;
 
 public class JsonAddressBookStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
+            "JsonAddressBookStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -44,17 +45,20 @@ public class JsonAddressBookStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        Assert.assertThrows(DataLoadingException.class, () -> readAddressBook("notJsonFormatAddressBook.json"));
+        Assert.assertThrows(DataLoadingException.class, () -> readAddressBook(
+                "notJsonFormatAddressBook.json"));
     }
 
     @Test
     public void readAddressBook_invalidPersonAddressBook_throwDataLoadingException() {
-        Assert.assertThrows(DataLoadingException.class, () -> readAddressBook("invalidPersonAddressBook.json"));
+        Assert.assertThrows(DataLoadingException.class, () -> readAddressBook(
+                "invalidPersonAddressBook.json"));
     }
 
     @Test
     public void readAddressBook_invalidAndValidPersonAddressBook_throwDataLoadingException() {
-        Assert.assertThrows(DataLoadingException.class, () -> readAddressBook("invalidAndValidPersonAddressBook.json"));
+        Assert.assertThrows(DataLoadingException.class, () -> readAddressBook(
+                "invalidAndValidPersonAddressBook.json"));
     }
 
     @Test
@@ -102,6 +106,7 @@ public class JsonAddressBookStorageTest {
 
     @Test
     public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> saveAddressBook(new AddressBook(), null));
+        Assert.assertThrows(NullPointerException.class, () -> saveAddressBook(new AddressBook(),
+                null));
     }
 }

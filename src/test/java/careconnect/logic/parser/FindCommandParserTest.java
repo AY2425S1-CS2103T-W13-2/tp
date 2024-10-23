@@ -6,6 +6,7 @@ import static careconnect.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static careconnect.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +15,7 @@ import careconnect.model.person.NameAndAddressContainsKeywordPredicate;
 
 public class FindCommandParserTest {
 
-    private FindCommandParser parser = new FindCommandParser();
+    private final FindCommandParser parser = new FindCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
@@ -36,11 +37,12 @@ public class FindCommandParserTest {
         FindCommand expectedFindCommand =
                 new FindCommand(new NameAndAddressContainsKeywordPredicate(
                         Arrays.asList("Alice", "Bob"),
-                        Arrays.asList("serangoon")
+                        List.of("serangoon")
                 ));
         assertParseSuccess(parser, " n/Alice Bob a/ serangoon", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " n/ \n Alice \n \t Bob  \t a/    \n serangoon", expectedFindCommand);
+        assertParseSuccess(parser, " n/ \n Alice \n \t Bob  \t a/    \n serangoon",
+                expectedFindCommand);
     }
 }

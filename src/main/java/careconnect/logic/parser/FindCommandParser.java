@@ -26,7 +26,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         requireNonNull(args);
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                            FindCommand.MESSAGE_USAGE));
         } else if (trimmedArgs.length() < 2) {
             throw new ParseException(
                     String.format(Messages.MESSAGE_TOO_SHORT_SEARCH, FindCommand.MESSAGE_USAGE));
@@ -40,7 +41,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (!argMultimap.getValue(CliSyntax.PREFIX_NAME).isPresent()
                 && !argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).isPresent()) {
             throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE)
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                            FindCommand.MESSAGE_USAGE)
             );
         }
         if (argMultimap.getValue(CliSyntax.PREFIX_NAME).isPresent()) {
@@ -54,7 +56,8 @@ public class FindCommandParser implements Parser<FindCommand> {
 
 
         return new FindCommand(
-                new NameAndAddressContainsKeywordPredicate(Arrays.asList(nameKeywords), Arrays.asList(addressKeywords))
+                new NameAndAddressContainsKeywordPredicate(Arrays.asList(nameKeywords),
+                        Arrays.asList(addressKeywords))
         );
     }
 

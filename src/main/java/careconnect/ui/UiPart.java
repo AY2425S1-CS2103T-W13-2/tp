@@ -5,9 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.io.IOException;
 import java.net.URL;
 
-import javafx.fxml.FXMLLoader;
-
 import careconnect.MainApp;
+import javafx.fxml.FXMLLoader;
 
 /**
  * Represents a distinct part of the UI. e.g. Windows, dialogs, panels, status bars, etc.
@@ -48,7 +47,8 @@ public abstract class UiPart<T> {
     }
 
     /**
-     * Constructs a UiPart with the specified FXML file within {@link #FXML_FILE_FOLDER} and root object.
+     * Constructs a UiPart with the specified FXML file within {@link #FXML_FILE_FOLDER} and root
+     * object.
      *
      * @see #UiPart(URL, T)
      */

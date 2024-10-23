@@ -3,10 +3,9 @@ package careconnect.model;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
-import javafx.collections.ObservableList;
-
 import careconnect.commons.core.GuiSettings;
 import careconnect.model.person.Person;
+import javafx.collections.ObservableList;
 
 /**
  * The API of the Model component.
@@ -77,7 +76,8 @@ public interface Model {
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing
+     * person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
 

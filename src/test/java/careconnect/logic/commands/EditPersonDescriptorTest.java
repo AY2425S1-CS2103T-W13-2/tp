@@ -13,45 +13,46 @@ public class EditPersonDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditPersonDescriptor descriptorWithSameValues = new EditPersonDescriptor(CommandTestUtil.DESC_AMY);
-        Assertions.assertTrue(CommandTestUtil.DESC_AMY.equals(descriptorWithSameValues));
+        EditPersonDescriptor descriptorWithSameValues =
+                new EditPersonDescriptor(CommandTestUtil.DESC_AMY);
+        assertEquals(CommandTestUtil.DESC_AMY, descriptorWithSameValues);
 
         // same object -> returns true
-        Assertions.assertTrue(CommandTestUtil.DESC_AMY.equals(CommandTestUtil.DESC_AMY));
+        assertEquals(CommandTestUtil.DESC_AMY, CommandTestUtil.DESC_AMY);
 
         // null -> returns false
-        Assertions.assertFalse(CommandTestUtil.DESC_AMY.equals(null));
+        Assertions.assertNotEquals(null, CommandTestUtil.DESC_AMY);
 
         // different types -> returns false
-        Assertions.assertFalse(CommandTestUtil.DESC_AMY.equals(5));
+        Assertions.assertNotEquals(5, CommandTestUtil.DESC_AMY);
 
         // different values -> returns false
-        Assertions.assertFalse(CommandTestUtil.DESC_AMY.equals(CommandTestUtil.DESC_BOB));
+        Assertions.assertNotEquals(CommandTestUtil.DESC_AMY, CommandTestUtil.DESC_BOB);
 
         // different name -> returns false
         EditPersonDescriptor editedAmy = new EditPersonDescriptorBuilder(CommandTestUtil.DESC_AMY)
                 .withName(CommandTestUtil.VALID_NAME_BOB).build();
-        Assertions.assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
+        Assertions.assertNotEquals(CommandTestUtil.DESC_AMY, editedAmy);
 
         // different phone -> returns false
         editedAmy = new EditPersonDescriptorBuilder(CommandTestUtil.DESC_AMY)
                 .withPhone(CommandTestUtil.VALID_PHONE_BOB).build();
-        Assertions.assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
+        Assertions.assertNotEquals(CommandTestUtil.DESC_AMY, editedAmy);
 
         // different email -> returns false
         editedAmy = new EditPersonDescriptorBuilder(CommandTestUtil.DESC_AMY)
                 .withEmail(CommandTestUtil.VALID_EMAIL_BOB).build();
-        Assertions.assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
+        Assertions.assertNotEquals(CommandTestUtil.DESC_AMY, editedAmy);
 
         // different address -> returns false
         editedAmy = new EditPersonDescriptorBuilder(CommandTestUtil.DESC_AMY)
                 .withAddress(CommandTestUtil.VALID_ADDRESS_BOB).build();
-        Assertions.assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
+        Assertions.assertNotEquals(CommandTestUtil.DESC_AMY, editedAmy);
 
         // different tags -> returns false
         editedAmy = new EditPersonDescriptorBuilder(CommandTestUtil.DESC_AMY)
                 .withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
-        Assertions.assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
+        Assertions.assertNotEquals(CommandTestUtil.DESC_AMY, editedAmy);
     }
 
     @Test

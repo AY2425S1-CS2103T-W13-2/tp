@@ -2,16 +2,15 @@ package careconnect.ui;
 
 import java.util.logging.Logger;
 
+import careconnect.MainApp;
+import careconnect.commons.core.LogsCenter;
+import careconnect.commons.util.StringUtil;
+import careconnect.logic.Logic;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
-import careconnect.MainApp;
-import careconnect.commons.core.LogsCenter;
-import careconnect.commons.util.StringUtil;
-import careconnect.logic.Logic;
 
 /**
  * The manager of the UI component.
@@ -37,7 +36,8 @@ public class UiManager implements Ui {
      * Shows an alert dialog on {@code owner} with the given parameters.
      * This method only returns after the user has closed the alert dialog.
      */
-    private static void showAlertDialogAndWait(Stage owner, AlertType type, String title, String headerText,
+    private static void showAlertDialogAndWait(Stage owner, AlertType type, String title,
+                                               String headerText,
                                                String contentText) {
         final Alert alert = new Alert(type);
         alert.getDialogPane().getStylesheets().add("view/DarkTheme.css");
@@ -47,6 +47,11 @@ public class UiManager implements Ui {
         alert.setContentText(contentText);
         alert.getDialogPane().setId(ALERT_DIALOG_PANE_FIELD_ID);
         alert.showAndWait();
+    }
+
+    void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText,
+                                String contentText) {
+        showAlertDialogAndWait(mainWindow.getPrimaryStage(), type, title, headerText, contentText);
     }
 
     @Override
@@ -69,10 +74,6 @@ public class UiManager implements Ui {
 
     private Image getImage(String imagePath) {
         return new Image(MainApp.class.getResourceAsStream(imagePath));
-    }
-
-    void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText, String contentText) {
-        showAlertDialogAndWait(mainWindow.getPrimaryStage(), type, title, headerText, contentText);
     }
 
     /**

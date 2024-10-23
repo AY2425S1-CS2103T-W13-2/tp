@@ -1,7 +1,8 @@
 package careconnect.commons.util;
 
 /**
- * Builds a string representation of an object that is suitable as the return value of {@link Object#toString()}.
+ * Builds a string representation of an object that is suitable as the return value of
+ * {@link Object#toString()}.
  */
 public class ToStringBuilder {
     private static final String OBJECT_PREFIX = "{";
@@ -13,7 +14,8 @@ public class ToStringBuilder {
     private boolean hasField;
 
     /**
-     * Constructs a {@code ToStringBuilder} whose formatted output will be prefixed with {@code objectName}.
+     * Constructs a {@code ToStringBuilder} whose formatted output will be prefixed with {@code
+     * objectName}.
      */
     public ToStringBuilder(String objectName) {
         stringBuilder.append(objectName).append(OBJECT_PREFIX);
@@ -32,7 +34,8 @@ public class ToStringBuilder {
      *
      * @param fieldName  The name of the field.
      * @param fieldValue The value of the field.
-     * @return A reference to this {@code ToStringBuilder} object, allowing method calls to be chained.
+     * @return A reference to this {@code ToStringBuilder} object, allowing method calls to be
+     *     chained.
      */
     public ToStringBuilder add(String fieldName, Object fieldValue) {
         if (hasField) {

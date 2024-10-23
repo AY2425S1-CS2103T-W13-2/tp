@@ -6,11 +6,10 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.logging.Logger;
 
-import javafx.application.Application;
-
 import careconnect.commons.core.LogsCenter;
 import careconnect.commons.util.FileUtil;
 import careconnect.commons.util.ToStringBuilder;
+import javafx.application.Application;
 
 /**
  * Represents the parsed command-line parameters given to the application.
@@ -29,10 +28,12 @@ public class AppParameters {
 
         String configPathParameter = namedParameters.get("config");
         if (configPathParameter != null && !FileUtil.isValidPath(configPathParameter)) {
-            logger.warning("Invalid config path " + configPathParameter + ". Using default config path.");
+            logger.warning("Invalid config path " + configPathParameter + ". Using default config"
+                    + " path.");
             configPathParameter = null;
         }
-        appParameters.setConfigPath(configPathParameter != null ? Paths.get(configPathParameter) : null);
+        appParameters.setConfigPath(configPathParameter != null ? Paths.get(configPathParameter)
+                : null);
 
         return appParameters;
     }

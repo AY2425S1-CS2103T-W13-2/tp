@@ -2,12 +2,11 @@ package careconnect.ui;
 
 import java.text.SimpleDateFormat;
 
+import careconnect.model.log.Log;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-
-import careconnect.model.log.Log;
 
 /**
  * An UI component that displays information of a {@code Log}.
@@ -15,7 +14,8 @@ import careconnect.model.log.Log;
 public class LogCard extends UiPart<Region> {
 
     private static final String FXML = "LogCard.fxml";
-    private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM yyyy HH:mm");
+    private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
+            "dd MMM yyyy HH:mm");
 
     public final Log log;
 

@@ -30,7 +30,8 @@ public class StringUtil {
 
         String preppedWord = word.trim();
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
-        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
+        checkArgument(preppedWord.split("\\s+").length == 1,
+                "Word parameter should be a single " + "word");
 
         String preppedSentence = sentence;
         String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
@@ -65,9 +66,11 @@ public class StringUtil {
         // prepare sentence (using lower case for case insensitive search)
         String preppedSentence = sentence.toLowerCase();
 
-        // There is no need to check each individual word in person name for contains preppedWord because
+        // There is no need to check each individual word in person name for contains preppedWord
+        // because
         // 1) if a word in person name contains prepped word -> preppedSentence contains preppedWord
-        // 2) if preppedSentence contains prepped word -> a word in person name contains prepped word
+        // 2) if preppedSentence contains prepped word -> a word in person name contains prepped
+        // word
         // 2 is because preppedWord doesn't have any spaces
         return preppedSentence.contains(preppedPartialWord);
     }
@@ -86,7 +89,8 @@ public class StringUtil {
      * Returns true if {@code s} represents a non-zero unsigned integer
      * e.g. 1, 2, 3, ..., {@code Integer.MAX_VALUE} <br>
      * Will return false for any other non-null string input
-     * e.g. empty string, "-1", "0", "+1", and " 2 " (untrimmed), "3 0" (contains whitespace), "1 a" (contains letters)
+     * e.g. empty string, "-1", "0", "+1", and " 2 " (untrimmed), "3 0" (contains whitespace), "1
+     * a" (contains letters)
      *
      * @throws NullPointerException if {@code s} is null.
      */
@@ -95,7 +99,8 @@ public class StringUtil {
 
         try {
             int value = Integer.parseInt(s);
-            return value > 0 && !s.startsWith("+"); // "+1" is successfully parsed by Integer#parseInt(String)
+            return value > 0 && !s.startsWith("+"); // "+1" is successfully parsed by
+            // Integer#parseInt(String)
         } catch (NumberFormatException nfe) {
             return false;
         }

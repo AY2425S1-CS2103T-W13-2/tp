@@ -6,18 +6,20 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 import careconnect.commons.util.CollectionUtil;
 import careconnect.model.person.exceptions.DuplicatePersonException;
 import careconnect.model.person.exceptions.PersonNotFoundException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
+ * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such,
+ * adding and updating of
+ * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being
+ * added or updated is
+ * unique in terms of identity in the UniquePersonList. However, the removal of a person uses
+ * Person#equals(Object) so
  * as to ensure that the person with exactly the same fields will be removed.
  * <p>
  * Supports a minimal set of list operations.
@@ -55,7 +57,8 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Replaces the person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The person identity of {@code editedPerson} must not be the same as another existing
+     * person in the list.
      */
     public void setPerson(Person target, Person editedPerson) {
         CollectionUtil.requireAllNonNull(target, editedPerson);

@@ -1,8 +1,7 @@
 package careconnect.model;
 
-import javafx.collections.ObservableList;
-
 import careconnect.model.person.Person;
+import javafx.collections.ObservableList;
 
 /**
  * Unmodifiable view of an address book

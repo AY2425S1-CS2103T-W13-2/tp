@@ -2,9 +2,8 @@ package careconnect;
 
 import java.util.logging.Logger;
 
-import javafx.application.Application;
-
 import careconnect.commons.core.LogsCenter;
+import javafx.application.Application;
 
 /**
  * The main entry point to the application.
@@ -36,7 +35,8 @@ public class Main {
         // the user (if looking at the log output) that the said warning appearing in the log
         // can be ignored.
 
-        logger.warning("The warning about Unsupported JavaFX configuration below (if any) can be ignored.");
+        logger.warning("The warning about Unsupported JavaFX configuration below (if any) can be "
+                + "ignored.");
         Application.launch(MainApp.class, args);
     }
 }

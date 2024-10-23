@@ -1,7 +1,6 @@
 package careconnect.logic.commands;
 
 import static careconnect.commons.util.CollectionUtil.requireAllNonNull;
-import static careconnect.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
@@ -29,7 +28,8 @@ public class AddLogCommand extends Command {
 
     public static final String COMMAND_WORD = "addlog";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a log to the person identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a log to the person "
+            + "identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
@@ -83,7 +83,8 @@ public class AddLogCommand extends Command {
         Person personWithLogAdded = createPersonWithNewLog(personToAddLog, this.log);
 
         model.setPerson(personToAddLog, personWithLogAdded);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, this.log.getRemark(), personToAddLog.getName()),
+        return new CommandResult(String.format(MESSAGE_SUCCESS, this.log.getRemark(),
+                personToAddLog.getName()),
                 false, false, targetIndex.getZeroBased());
     }
 

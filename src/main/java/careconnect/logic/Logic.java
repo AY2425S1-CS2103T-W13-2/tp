@@ -2,8 +2,6 @@ package careconnect.logic;
 
 import java.nio.file.Path;
 
-import javafx.collections.ObservableList;
-
 import careconnect.commons.core.GuiSettings;
 import careconnect.logic.autocompleter.exceptions.AutocompleteException;
 import careconnect.logic.commands.CommandResult;
@@ -12,6 +10,7 @@ import careconnect.logic.parser.exceptions.ParseException;
 import careconnect.model.Model;
 import careconnect.model.ReadOnlyAddressBook;
 import careconnect.model.person.Person;
+import javafx.collections.ObservableList;
 
 
 /**
@@ -32,7 +31,8 @@ public interface Logic {
      * Provides an autocomplete suggestion based on the given command text
      *
      * @param commandText The partial command for which to generate an autocomplete suggestion.
-     * @return A string containing the most relevant autocomplete suggestion based on the given input.
+     * @return A string containing the most relevant autocomplete suggestion based on the given
+     *     input.
      * @throws AutocompleteException If no valid autocomplete suggestion can be generated.
      */
     String autocompleteCommand(String commandText) throws AutocompleteException;

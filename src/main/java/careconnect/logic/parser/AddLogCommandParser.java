@@ -22,7 +22,8 @@ public class AddLogCommandParser implements Parser<AddLogCommand> {
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap,
+                                              Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
@@ -42,7 +43,8 @@ public class AddLogCommandParser implements Parser<AddLogCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLogCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddLogCommand.MESSAGE_USAGE), pe);
         }
 
         if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_REMARK)) {
@@ -53,10 +55,12 @@ public class AddLogCommandParser implements Parser<AddLogCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(CliSyntax.PREFIX_DATE, CliSyntax.PREFIX_REMARK);
 
         Log log;
-        String remark = ParserUtil.parseLogRemark(argMultimap.getValue(CliSyntax.PREFIX_REMARK).get());
+        String remark =
+                ParserUtil.parseLogRemark(argMultimap.getValue(CliSyntax.PREFIX_REMARK).get());
 
         if (argMultimap.getValue(CliSyntax.PREFIX_DATE).isPresent()) {
-            Date date = ParserUtil.parseLogDate((argMultimap.getValue(CliSyntax.PREFIX_DATE).get()));
+            Date date =
+                    ParserUtil.parseLogDate((argMultimap.getValue(CliSyntax.PREFIX_DATE).get()));
             log = new Log(date, remark);
         } else {
             log = new Log(remark);

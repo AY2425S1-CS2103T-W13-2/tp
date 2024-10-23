@@ -43,7 +43,8 @@ public class Version implements Comparable<Version> {
         Matcher versionMatcher = VERSION_PATTERN.matcher(versionString);
 
         if (!versionMatcher.find()) {
-            throw new IllegalArgumentException(String.format(EXCEPTION_STRING_NOT_VERSION, versionString));
+            throw new IllegalArgumentException(String.format(EXCEPTION_STRING_NOT_VERSION,
+                    versionString));
         }
 
         return new Version(Integer.parseInt(versionMatcher.group(1)),
