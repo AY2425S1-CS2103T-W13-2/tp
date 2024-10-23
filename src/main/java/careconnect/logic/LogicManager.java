@@ -17,6 +17,7 @@ import careconnect.logic.commands.ClearCommand;
 import careconnect.logic.commands.Command;
 import careconnect.logic.commands.CommandResult;
 import careconnect.logic.commands.DeleteCommand;
+import careconnect.logic.commands.DeleteLogCommand;
 import careconnect.logic.commands.EditCommand;
 import careconnect.logic.commands.ExitCommand;
 import careconnect.logic.commands.FindCommand;
@@ -60,7 +61,8 @@ public class LogicManager implements Logic {
             HelpCommand.COMMAND_WORD,
             ListCommand.COMMAND_WORD,
             ViewCommand.COMMAND_WORD,
-            AddLogCommand.COMMAND_WORD
+            AddLogCommand.COMMAND_WORD,
+            DeleteLogCommand.COMMAND_WORD
     ));
 
     /**

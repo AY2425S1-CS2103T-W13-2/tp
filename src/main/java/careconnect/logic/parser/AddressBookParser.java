@@ -13,6 +13,7 @@ import careconnect.logic.commands.AddLogCommand;
 import careconnect.logic.commands.ClearCommand;
 import careconnect.logic.commands.Command;
 import careconnect.logic.commands.DeleteCommand;
+import careconnect.logic.commands.DeleteLogCommand;
 import careconnect.logic.commands.EditCommand;
 import careconnect.logic.commands.ExitCommand;
 import careconnect.logic.commands.FindCommand;
@@ -69,6 +70,9 @@ public class AddressBookParser {
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
+
+        case DeleteLogCommand.COMMAND_WORD:
+            return new DeleteLogCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
