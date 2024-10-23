@@ -1,16 +1,17 @@
 package careconnect.ui;
 
-import careconnect.logic.Logic;
-import careconnect.logic.autocompleter.exceptions.AutocompleteException;
-import careconnect.logic.commands.CommandResult;
-import careconnect.logic.commands.exceptions.CommandException;
-import careconnect.logic.parser.exceptions.ParseException;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
+
+import careconnect.logic.Logic;
+import careconnect.logic.autocompleter.exceptions.AutocompleteException;
+import careconnect.logic.commands.CommandResult;
+import careconnect.logic.commands.exceptions.CommandException;
+import careconnect.logic.parser.exceptions.ParseException;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -103,8 +104,8 @@ public class CommandBox extends UiPart<Region> {
         if (syntaxValidator.validateSyntax(commandText)) {
             // Sets style back to default if command is valid
             this.setStyleToDefault();
-            assert(!(this.commandTextField.getStyleClass()
-                            .contains(ERROR_STYLE_CLASS)));
+            assert (!(this.commandTextField.getStyleClass()
+                    .contains(ERROR_STYLE_CLASS)));
         } else {
             setStyleToIndicateCommandFailure();
         }
@@ -128,7 +129,7 @@ public class CommandBox extends UiPart<Region> {
         }
 
         styleClass.add(ERROR_STYLE_CLASS);
-        assert(styleClass.contains(ERROR_STYLE_CLASS));
+        assert (styleClass.contains(ERROR_STYLE_CLASS));
     }
 
     /**

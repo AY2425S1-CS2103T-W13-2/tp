@@ -2,8 +2,9 @@ package careconnect.commons.util;
 
 import static java.util.Objects.requireNonNull;
 
-import careconnect.MainApp;
 import javafx.scene.image.Image;
+
+import careconnect.MainApp;
 
 /**
  * A container for App specific utility functions

@@ -4,16 +4,16 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.Comparator;
 
-import careconnect.model.person.Person;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+
+import careconnect.model.person.Person;
 
 /**
  * An UI component that displays detailed information of a {@code Person} in the right pane of the window.
@@ -31,7 +31,8 @@ public class PersonDetailCard extends UiPart<Region> {
      */
 
     public final Person person;
-
+    @FXML
+    private final LogListPanel logsListPanel;
     @FXML
     private HBox personDetailCardPane;
     @FXML
@@ -46,8 +47,6 @@ public class PersonDetailCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
-    @FXML
-    private LogListPanel logsListPanel;
     @FXML
     private StackPane logsListPanelPlaceHolder;
 

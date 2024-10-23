@@ -1,5 +1,7 @@
 package careconnect.model.log;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
@@ -12,7 +14,8 @@ import careconnect.commons.util.ToStringBuilder;
  * Guarantees: immutable; remark is valid as declared in {@link #isValidLogRemark(String)}
  */
 public class Log {
-    public static final String MESSAGE_CONSTRAINTS = "Logs can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Log remark can take any values, and it should not be blank." +
+            "Log date should be in the format yyyy-MM-dd HH:mm, if provided.";
 
     /*
      * The first character of the log must not be a whitespace,
@@ -24,7 +27,7 @@ public class Log {
     private final String remark;
 
     /**
-     * Constructs a {@code Log}.
+     * Constructs a {@code Log} with today's date.
      *
      * @param remark A valid log remark.
      */
@@ -34,10 +37,11 @@ public class Log {
         AppUtil.checkArgument(isValidLogRemark(remark), MESSAGE_CONSTRAINTS);
         this.remark = remark;
     }
+
     /**
      * Constructs a {@code Log}.
      *
-     * @param date A valid log date.
+     * @param date   A valid log date.
      * @param remark A valid log remark.
      */
     public Log(Date date, String remark) {

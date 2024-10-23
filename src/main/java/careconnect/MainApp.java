@@ -5,6 +5,9 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import javafx.application.Application;
+import javafx.stage.Stage;
+
 import careconnect.commons.core.Config;
 import careconnect.commons.core.LogsCenter;
 import careconnect.commons.core.Version;
@@ -28,8 +31,6 @@ import careconnect.storage.StorageManager;
 import careconnect.storage.UserPrefsStorage;
 import careconnect.ui.Ui;
 import careconnect.ui.UiManager;
-import javafx.application.Application;
-import javafx.stage.Stage;
 
 /**
  * Runs the application.

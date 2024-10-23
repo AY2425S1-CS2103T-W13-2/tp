@@ -10,17 +10,25 @@ import careconnect.commons.util.ToStringBuilder;
  * Represents the result of a command execution.
  */
 public class CommandResult {
-    /** We use -1 to represent none-selection. */
+    /**
+     * We use -1 to represent none-selection.
+     */
     public static final int NO_RECORD_SELECTED = -1;
 
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
+    /**
+     * Help information should be shown to the user.
+     */
     private final boolean showHelp;
 
-    /** The application should exit. */
+    /**
+     * The application should exit.
+     */
     private final boolean exit;
-    /** The index of the selected record. We use -1 to represent none-selection. */
+    /**
+     * The index of the selected record. We use -1 to represent none-selection.
+     */
     private final int selectedIndex;
 
     /**
@@ -72,11 +80,10 @@ public class CommandResult {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof CommandResult)) {
+        if (!(other instanceof CommandResult otherCommandResult)) {
             return false;
         }
 
-        CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit

@@ -15,6 +15,7 @@ public class NameAndAddressContainsKeywordPredicate implements Predicate<Person>
 
     /**
      * Constructor for predicate taking in a list of name keywords and a list of address keywords for matching
+     *
      * @param nameKeywords
      * @param addressKeywords
      */
@@ -25,6 +26,7 @@ public class NameAndAddressContainsKeywordPredicate implements Predicate<Person>
 
     /**
      * condition that seach keyword is tested against
+     *
      * @param person the input argument
      * @return boolean of whether predicat test passed
      */
@@ -46,7 +48,7 @@ public class NameAndAddressContainsKeywordPredicate implements Predicate<Person>
                 .anyMatch(keyword -> StringUtil.containsPartialWordIgnoreCase(person.getName().fullName, keyword))
                 && addressKeywords.stream()
                 .anyMatch(keyword -> StringUtil.containsPartialWordIgnoreCase(person.getAddress().toString(), keyword))
-            );
+        );
     }
 
     @Override
@@ -56,12 +58,10 @@ public class NameAndAddressContainsKeywordPredicate implements Predicate<Person>
         }
 
         // instanceof handles nulls
-        if (!(other instanceof NameAndAddressContainsKeywordPredicate)) {
+        if (!(other instanceof NameAndAddressContainsKeywordPredicate otherNameContainsKeywordsPredicate)) {
             return false;
         }
 
-        NameAndAddressContainsKeywordPredicate otherNameContainsKeywordsPredicate =
-                (NameAndAddressContainsKeywordPredicate) other;
         return nameKeywords.equals(otherNameContainsKeywordsPredicate.nameKeywords)
                 && addressKeywords.equals(otherNameContainsKeywordsPredicate.addressKeywords);
     }

@@ -2,6 +2,8 @@ package careconnect.logic;
 
 import java.nio.file.Path;
 
+import javafx.collections.ObservableList;
+
 import careconnect.commons.core.GuiSettings;
 import careconnect.logic.autocompleter.exceptions.AutocompleteException;
 import careconnect.logic.commands.CommandResult;
@@ -10,7 +12,6 @@ import careconnect.logic.parser.exceptions.ParseException;
 import careconnect.model.Model;
 import careconnect.model.ReadOnlyAddressBook;
 import careconnect.model.person.Person;
-import javafx.collections.ObservableList;
 
 
 /**
@@ -19,15 +20,17 @@ import javafx.collections.ObservableList;
 public interface Logic {
     /**
      * Executes the command and returns the result.
+     *
      * @param commandText The command as entered by the user.
      * @return the result of the command execution.
      * @throws CommandException If an error occurs during command execution.
-     * @throws ParseException If an error occurs during parsing.
+     * @throws ParseException   If an error occurs during parsing.
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
      * Provides an autocomplete suggestion based on the given command text
+     *
      * @param commandText The partial command for which to generate an autocomplete suggestion.
      * @return A string containing the most relevant autocomplete suggestion based on the given input.
      * @throws AutocompleteException If no valid autocomplete suggestion can be generated.
@@ -49,7 +52,9 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /**
+     * Returns an unmodifiable view of the filtered list of persons
+     */
     ObservableList<Person> getFilteredPersonList();
 
     /**

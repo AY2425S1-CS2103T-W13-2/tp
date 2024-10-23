@@ -4,7 +4,6 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import careconnect.commons.exceptions.IllegalValueException;
 import careconnect.model.log.Log;
@@ -35,16 +34,6 @@ class JsonAdaptedLog {
     public JsonAdaptedLog(Log source) {
         date = source.getDate();
         remark = source.getRemark();
-    }
-
-    @JsonValue
-    public Date getDate() {
-        return date;
-    }
-
-    @JsonValue
-    public String getRemark() {
-        return remark;
     }
 
     /**

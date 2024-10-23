@@ -3,13 +3,14 @@ package careconnect.ui;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 
-import careconnect.commons.core.LogsCenter;
-import careconnect.model.person.Person;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+
+import careconnect.commons.core.LogsCenter;
+import careconnect.model.person.Person;
 
 /**
  * Panel containing the list of persons.
@@ -39,6 +40,7 @@ public class PersonListPanel extends UiPart<Region> {
         public PersonListViewCell(Consumer<Integer> showSelectedPerson) {
             this.showSelectedPerson = showSelectedPerson;
         }
+
         @Override
         protected void updateItem(Person person, boolean empty) {
             super.updateItem(person, empty);

@@ -6,14 +6,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.logging.Logger;
 
-import careconnect.commons.core.GuiSettings;
-import careconnect.commons.core.LogsCenter;
-import careconnect.logic.Logic;
-import careconnect.logic.autocompleter.exceptions.AutocompleteException;
-import careconnect.logic.commands.CommandResult;
-import careconnect.logic.commands.exceptions.CommandException;
-import careconnect.logic.parser.exceptions.ParseException;
-import careconnect.model.person.Person;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -22,6 +14,15 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
+import careconnect.commons.core.GuiSettings;
+import careconnect.commons.core.LogsCenter;
+import careconnect.logic.Logic;
+import careconnect.logic.autocompleter.exceptions.AutocompleteException;
+import careconnect.logic.commands.CommandResult;
+import careconnect.logic.commands.exceptions.CommandException;
+import careconnect.logic.parser.exceptions.ParseException;
+import careconnect.model.person.Person;
 
 
 /**

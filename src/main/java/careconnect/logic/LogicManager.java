@@ -7,11 +7,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
+
 import careconnect.commons.core.GuiSettings;
 import careconnect.commons.core.LogsCenter;
 import careconnect.logic.autocompleter.Autocompleter;
 import careconnect.logic.autocompleter.exceptions.AutocompleteException;
 import careconnect.logic.commands.AddCommand;
+import careconnect.logic.commands.AddLogCommand;
 import careconnect.logic.commands.ClearCommand;
 import careconnect.logic.commands.Command;
 import careconnect.logic.commands.CommandResult;
@@ -29,7 +32,6 @@ import careconnect.model.Model;
 import careconnect.model.ReadOnlyAddressBook;
 import careconnect.model.person.Person;
 import careconnect.storage.Storage;
-import javafx.collections.ObservableList;
 
 
 /**
@@ -56,7 +58,8 @@ public class LogicManager implements Logic {
             FindCommand.COMMAND_WORD,
             HelpCommand.COMMAND_WORD,
             ListCommand.COMMAND_WORD,
-            ViewCommand.COMMAND_WORD
+            ViewCommand.COMMAND_WORD,
+            AddLogCommand.COMMAND_WORD
     ));
 
     /**
@@ -90,7 +93,7 @@ public class LogicManager implements Logic {
 
     /**
      * {@inheritDoc}
-     *
+     * <p>
      * In this implementation, ties for autocomplete suggestions will be broken by
      * lexicographical order.
      */

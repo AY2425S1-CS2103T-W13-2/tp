@@ -18,6 +18,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
 
     /**
      * condition that seach keyword is tested against
+     *
      * @param person the input argument
      * @return a boolean indicating if the test is passed
      */
@@ -25,7 +26,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
     public boolean test(Person person) {
         return (keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsPartialWordIgnoreCase(person.getName().fullName, keyword))
-            );
+        );
     }
 
     @Override
@@ -35,11 +36,10 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof NameContainsKeywordsPredicate)) {
+        if (!(other instanceof NameContainsKeywordsPredicate otherNameContainsKeywordsPredicate)) {
             return false;
         }
 
-        NameContainsKeywordsPredicate otherNameContainsKeywordsPredicate = (NameContainsKeywordsPredicate) other;
         return keywords.equals(otherNameContainsKeywordsPredicate.keywords);
     }
 

@@ -6,10 +6,11 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.logging.Logger;
 
+import javafx.application.Application;
+
 import careconnect.commons.core.LogsCenter;
 import careconnect.commons.util.FileUtil;
 import careconnect.commons.util.ToStringBuilder;
-import javafx.application.Application;
 
 /**
  * Represents the parsed command-line parameters given to the application.
@@ -18,14 +19,6 @@ public class AppParameters {
     private static final Logger logger = LogsCenter.getLogger(AppParameters.class);
 
     private Path configPath;
-
-    public Path getConfigPath() {
-        return configPath;
-    }
-
-    public void setConfigPath(Path configPath) {
-        this.configPath = configPath;
-    }
 
     /**
      * Parses the application command-line parameters.
@@ -44,6 +37,14 @@ public class AppParameters {
         return appParameters;
     }
 
+    public Path getConfigPath() {
+        return configPath;
+    }
+
+    public void setConfigPath(Path configPath) {
+        this.configPath = configPath;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -51,11 +52,10 @@ public class AppParameters {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AppParameters)) {
+        if (!(other instanceof AppParameters otherAppParameters)) {
             return false;
         }
 
-        AppParameters otherAppParameters = (AppParameters) other;
         return Objects.equals(configPath, otherAppParameters.configPath);
     }
 

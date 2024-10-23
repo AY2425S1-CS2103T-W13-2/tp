@@ -50,11 +50,10 @@ public class ViewCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ViewCommand)) {
+        if (!(other instanceof ViewCommand otherViewCommand)) {
             return false;
         }
 
-        ViewCommand otherViewCommand = (ViewCommand) other;
         return targetIndex.equals(otherViewCommand.targetIndex);
     }
 
