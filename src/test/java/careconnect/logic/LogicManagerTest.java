@@ -4,8 +4,6 @@ import static careconnect.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static careconnect.logic.Messages.MESSAGE_NO_AUTOCOMPLETE_OPTIONS;
 import static careconnect.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
@@ -36,19 +34,19 @@ import careconnect.testutil.TypicalPersons;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy IO exception");
-    private static final IOException DUMMY_AD_EXCEPTION = new AccessDeniedException("dummy access" +
-            " denied exception");
-    private final Model model = new ModelManager();
+    private static final IOException DUMMY_AD_EXCEPTION = new AccessDeniedException("dummy access denied exception");
+
     @TempDir
     public Path temporaryFolder;
+
+    private Model model = new ModelManager();
     private Logic logic;
 
     @BeforeEach
     public void setUp() {
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve(
-                "userPrefs.json"));
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
@@ -99,20 +97,19 @@ public class LogicManagerTest {
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        Assert.assertThrows(UnsupportedOperationException.class,
-                () -> logic.getFilteredPersonList().remove(0));
+        Assert.assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
     }
 
     @Test
     public void validateSyntax_validInputs_correctResults() {
-        assertFalse(logic.validateSyntax("fa"));
-        assertFalse(logic.validateSyntax("add n/"));
-        assertTrue(logic.validateSyntax("add"));
-        assertTrue(logic.validateSyntax("add n/Betsy Crowe t/friend e/betsycrowe@example.com"
+        assertEquals(false, logic.validateSyntax("fa"));
+        assertEquals(false, logic.validateSyntax("add n/"));
+        assertEquals(true, logic.validateSyntax("add"));
+        assertEquals(true, logic.validateSyntax("add n/Betsy Crowe t/friend e/betsycrowe@example.com"
                 + " a/Newgate Prison p/1234567 t/criminal"));
 
         // extra spaces should not invalidate syntax
-        assertTrue(logic.validateSyntax("add "));
+        assertEquals(true, logic.validateSyntax("add "));
     }
 
     /**
@@ -120,11 +117,10 @@ public class LogicManagerTest {
      * - no exceptions are thrown <br>
      * - the feedback message is equal to {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
-     *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
-                                      Model expectedModel) throws CommandException, ParseException {
+            Model expectedModel) throws CommandException, ParseException {
         CommandResult result = logic.execute(inputCommand);
         assertEquals(expectedMessage, result.getFeedbackToUser());
         assertEquals(expectedModel, model);
@@ -134,19 +130,16 @@ public class LogicManagerTest {
      * Autocompletes the input command and confirms that
      * - no exceptions are thrown
      * - the autocompleted suggestion is equal to {@code expectedSuggestion}
-     *
      * @see #assertAutocompleteException(String, String)
      */
     private void assertAutocompleteSuccess(String inputCommand,
-                                           String expectedSuggestion) throws AutocompleteException {
+            String expectedSuggestion) throws AutocompleteException {
         assertEquals(expectedSuggestion, logic.autocompleteCommand(inputCommand));
 
     }
 
     /**
-     * Executes the command, confirms that a ParseException is thrown and that the result message
-     * is correct.
-     *
+     * Executes the command, confirms that a ParseException is thrown and that the result message is correct.
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertParseException(String inputCommand, String expectedMessage) {
@@ -154,20 +147,16 @@ public class LogicManagerTest {
     }
 
     /**
-     * Autocompletes the input command, confirms that a AutocompleteException is thrown and that
-     * the result
+     * Autocompletes the input command, confirms that a AutocompleteException is thrown and that the result
      * message is correct.
      */
     private void assertAutocompleteException(String inputCommand, String expectedMessage) {
-        Assert.assertThrows(AutocompleteException.class, expectedMessage,
-                () -> logic.autocompleteCommand(
-                        inputCommand));
+        Assert.assertThrows(AutocompleteException.class, expectedMessage, () -> logic.autocompleteCommand(
+                inputCommand));
     }
 
     /**
-     * Executes the command, confirms that a CommandException is thrown and that the result
-     * message is correct.
-     *
+     * Executes the command, confirms that a CommandException is thrown and that the result message is correct.
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandException(String inputCommand, String expectedMessage) {
@@ -175,14 +164,11 @@ public class LogicManagerTest {
     }
 
     /**
-     * Executes the command, confirms that the exception is thrown and that the result message is
-     * correct.
-     *
+     * Executes the command, confirms that the exception is thrown and that the result message is correct.
      * @see #assertCommandFailure(String, Class, String, Model)
      */
-    private void assertCommandFailure(String inputCommand,
-                                      Class<? extends Throwable> expectedException,
-                                      String expectedMessage) {
+    private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
+            String expectedMessage) {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
@@ -192,25 +178,21 @@ public class LogicManagerTest {
      * - the {@code expectedException} is thrown <br>
      * - the resulting error message is equal to {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
-     *
      * @see #assertCommandSuccess(String, String, Model)
      */
-    private void assertCommandFailure(String inputCommand,
-                                      Class<? extends Throwable> expectedException,
-                                      String expectedMessage, Model expectedModel) {
+    private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
+            String expectedMessage, Model expectedModel) {
         Assert.assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
         assertEquals(expectedModel, model);
     }
 
     /**
-     * Tests the Logic component's handling of an {@code IOException} thrown by the Storage
-     * component.
+     * Tests the Logic component's handling of an {@code IOException} thrown by the Storage component.
      *
-     * @param e               the exception to be thrown by the Storage component
+     * @param e the exception to be thrown by the Storage component
      * @param expectedMessage the message expected inside exception thrown by the Logic component
      */
-    private void assertCommandFailureForExceptionFromStorage(IOException e,
-                                                             String expectedMessage) {
+    private void assertCommandFailureForExceptionFromStorage(IOException e, String expectedMessage) {
         Path prefPath = temporaryFolder.resolve("ExceptionUserPrefs.json");
 
         // Inject LogicManager with an AddressBookStorage that throws the IOException e when saving
@@ -229,10 +211,8 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Triggers the saveAddressBook method by executing an add command
-        String addCommand =
-                AddCommand.COMMAND_WORD + CommandTestUtil.NAME_DESC_AMY
-                        + CommandTestUtil.PHONE_DESC_AMY
-                        + CommandTestUtil.EMAIL_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY;
+        String addCommand = AddCommand.COMMAND_WORD + CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.PHONE_DESC_AMY
+                + CommandTestUtil.EMAIL_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY;
         Person expectedPerson = new PersonBuilder(TypicalPersons.AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);

@@ -3,7 +3,6 @@ package careconnect.model;
 import static careconnect.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
@@ -62,8 +61,7 @@ public class ModelManagerTest {
 
     @Test
     public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class,
-                () -> modelManager.setAddressBookFilePath(null));
+        Assert.assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
     }
 
     @Test
@@ -92,8 +90,7 @@ public class ModelManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         Assert.assertThrows(
-                UnsupportedOperationException.class,
-                () -> modelManager.getFilteredPersonList().remove(0)
+                UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0)
         );
     }
 
@@ -107,24 +104,24 @@ public class ModelManagerTest {
         // same values -> returns true
         modelManager = new ModelManager(addressBook, userPrefs);
         ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
-        assertEquals(modelManager, modelManagerCopy);
+        assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
-        assertEquals(modelManager, modelManager);
+        assertTrue(modelManager.equals(modelManager));
 
         // null -> returns false
-        assertNotEquals(null, modelManager);
+        assertFalse(modelManager.equals(null));
 
         // different types -> returns false
-        assertNotEquals(5, modelManager);
+        assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertNotEquals(modelManager, new ModelManager(differentAddressBook, userPrefs));
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = TypicalPersons.ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertNotEquals(modelManager, new ModelManager(addressBook, userPrefs));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -132,6 +129,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertNotEquals(modelManager, new ModelManager(addressBook, differentUserPrefs));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
     }
 }

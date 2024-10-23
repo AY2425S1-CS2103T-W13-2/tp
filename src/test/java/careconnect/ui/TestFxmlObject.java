@@ -6,16 +6,14 @@ import javafx.beans.DefaultProperty;
 
 /**
  * A test object which can be constructed via an FXML file.
- * Unlike other JavaFX classes, this class can be constructed without the JavaFX toolkit being
- * initialized.
+ * Unlike other JavaFX classes, this class can be constructed without the JavaFX toolkit being initialized.
  */
 @DefaultProperty("text")
 public class TestFxmlObject {
 
     private String text;
 
-    public TestFxmlObject() {
-    }
+    public TestFxmlObject() {}
 
     public TestFxmlObject(String text) {
         setText(text);
@@ -36,10 +34,11 @@ public class TestFxmlObject {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof TestFxmlObject otherTestFxmlObject)) {
+        if (!(other instanceof TestFxmlObject)) {
             return false;
         }
 
+        TestFxmlObject otherTestFxmlObject = (TestFxmlObject) other;
         return Objects.equals(text, otherTestFxmlObject.text);
     }
 

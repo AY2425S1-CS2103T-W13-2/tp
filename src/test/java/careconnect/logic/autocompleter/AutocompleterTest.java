@@ -18,8 +18,7 @@ public class AutocompleterTest {
         Autocompleter autocompleter = new Autocompleter();
         String prefix = "a";
         List<String> list = new ArrayList<>();
-        assertThrows(AutocompleteException.class, String.format(MESSAGE_NO_AUTOCOMPLETE_OPTIONS,
-                prefix), ()
+        assertThrows(AutocompleteException.class, String.format(MESSAGE_NO_AUTOCOMPLETE_OPTIONS, prefix), ()
                 -> autocompleter.autocompleteWithLexicalPriority(prefix, list));
     }
 
@@ -28,15 +27,12 @@ public class AutocompleterTest {
         Autocompleter autocompleter = new Autocompleter();
         String prefix = "a";
         List<String> list = new ArrayList<>();
-        assertThrows(NullPointerException.class,
-                () -> new Autocompleter().autocompleteWithLexicalPriority(
-                        null, list));
-        assertThrows(NullPointerException.class,
-                () -> new Autocompleter().autocompleteWithLexicalPriority(
-                        prefix, null));
-        assertThrows(NullPointerException.class,
-                () -> new Autocompleter().autocompleteWithLexicalPriority(
-                        null, null));
+        assertThrows(NullPointerException.class, () -> new Autocompleter().autocompleteWithLexicalPriority(
+                null, list));
+        assertThrows(NullPointerException.class, () -> new Autocompleter().autocompleteWithLexicalPriority(
+                prefix, null));
+        assertThrows(NullPointerException.class, () -> new Autocompleter().autocompleteWithLexicalPriority(
+                null, null));
     }
 
     @Test
@@ -46,5 +42,7 @@ public class AutocompleterTest {
         list.add("add");
         list.add("adda");
         assertEquals("add", autocompleter.autocompleteWithLexicalPriority("ad", list));
+        list.add("abs");
+        assertEquals("abs", autocompleter.autocompleteWithLexicalPriority("a", list));
     }
 }

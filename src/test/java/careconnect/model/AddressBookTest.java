@@ -44,10 +44,9 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice =
-                new PersonBuilder(TypicalPersons.ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
-                        .withTags(CommandTestUtil.VALID_TAG_HUSBAND)
-                        .build();
+        Person editedAlice = new PersonBuilder(TypicalPersons.ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
+                .withTags(CommandTestUtil.VALID_TAG_HUSBAND)
+                .build();
         List<Person> newPersons = Arrays.asList(TypicalPersons.ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons);
 
@@ -73,24 +72,20 @@ public class AddressBookTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(TypicalPersons.ALICE);
-        Person editedAlice =
-                new PersonBuilder(TypicalPersons.ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
-                        .withTags(CommandTestUtil.VALID_TAG_HUSBAND)
-                        .build();
+        Person editedAlice = new PersonBuilder(TypicalPersons.ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
+                .withTags(CommandTestUtil.VALID_TAG_HUSBAND)
+                .build();
         assertTrue(addressBook.hasPerson(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        Assert.assertThrows(UnsupportedOperationException.class,
-                () -> addressBook.getPersonList().remove(0));
+        Assert.assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
     }
 
     @Test
     public void toStringMethod() {
-        String expected =
-                AddressBook.class.getCanonicalName() + "{persons=" + addressBook.getPersonList()
-                        + "}";
+        String expected = AddressBook.class.getCanonicalName() + "{persons=" + addressBook.getPersonList() + "}";
         assertEquals(expected, addressBook.toString());
     }
 

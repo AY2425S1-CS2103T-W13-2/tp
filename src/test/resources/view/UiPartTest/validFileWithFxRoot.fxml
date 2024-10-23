@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import careconnect.ui.TestFxmlObject?>
-<fx:root xmlns:fx="http://javafx.com/fxml/1" type="TestFxmlObject"
-         xmlns="http://javafx.com/javafx/17">
+
+<fx:root type="TestFxmlObject" xmlns="http://javafx.com/javafx/17"
+         xmlns:fx="http://javafx.com/fxml/1">
     <text>Hello World!</text>
 </fx:root>

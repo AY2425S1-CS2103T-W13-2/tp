@@ -1,9 +1,7 @@
 package careconnect.model.person;
 
 import static careconnect.testutil.Assert.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -45,18 +43,18 @@ public class NameTest {
         Name name = new Name("Valid Name");
 
         // same values -> returns true
-        assertEquals(name, new Name("Valid Name"));
+        assertTrue(name.equals(new Name("Valid Name")));
 
         // same object -> returns true
-        assertEquals(name, name);
+        assertTrue(name.equals(name));
 
         // null -> returns false
-        assertNotEquals(null, name);
+        assertFalse(name.equals(null));
 
         // different types -> returns false
-        assertNotEquals(5.0f, name, 0.0);
+        assertFalse(name.equals(5.0f));
 
         // different values -> returns false
-        assertNotEquals(name, new Name("Other Valid Name"));
+        assertFalse(name.equals(new Name("Other Valid Name")));
     }
 }

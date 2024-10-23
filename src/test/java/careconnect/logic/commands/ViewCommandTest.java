@@ -4,7 +4,7 @@ import static careconnect.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static careconnect.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static careconnect.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -41,8 +41,7 @@ public class ViewCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         ViewCommand command = new ViewCommand(outOfBoundIndex);
 
-        CommandTestUtil.assertCommandFailure(command, model,
-                Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(command, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
@@ -70,8 +69,7 @@ public class ViewCommandTest {
 
         ViewCommand command = new ViewCommand(outOfBoundIndex);
 
-        CommandTestUtil.assertCommandFailure(command, model,
-                Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(command, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
@@ -80,28 +78,27 @@ public class ViewCommandTest {
         ViewCommand secondCommand = new ViewCommand(INDEX_SECOND_PERSON);
 
         // same object -> returns true
-        assertEquals(command, command);
+        assertTrue(command.equals(command));
 
         // same values -> returns true
         ViewCommand otherCommand = new ViewCommand(INDEX_FIRST_PERSON);
-        assertEquals(command, otherCommand);
+        assertTrue(command.equals(otherCommand));
 
         // different types -> returns false
-        assertNotEquals(1, command);
+        assertFalse(command.equals(1));
 
         // null -> returns false
-        assertNotEquals(null, command);
+        assertFalse(command.equals(null));
 
         // different index -> returns false
-        assertNotEquals(command, secondCommand);
+        assertFalse(command.equals(secondCommand));
     }
 
     @Test
     public void toStringMethod() {
         Index targetIndex = Index.fromOneBased(1);
         ViewCommand command = new ViewCommand(targetIndex);
-        String expected = ViewCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex +
-                "}";
+        String expected = ViewCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
         assertEquals(expected, command.toString());
     }
 }

@@ -18,8 +18,7 @@ import careconnect.testutil.Assert;
 
 public class JsonUserPrefsStorageTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
-            "JsonUserPrefsStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonUserPrefsStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -41,8 +40,7 @@ public class JsonUserPrefsStorageTest {
 
     @Test
     public void readUserPrefs_notJsonFormat_exceptionThrown() {
-        Assert.assertThrows(DataLoadingException.class, () -> readUserPrefs(
-                "NotJsonFormatUserPrefs.json"));
+        Assert.assertThrows(DataLoadingException.class, () -> readUserPrefs("NotJsonFormatUserPrefs.json"));
     }
 
     private Path addToTestDataPathIfNotNull(String userPrefsFileInTestDataFolder) {
