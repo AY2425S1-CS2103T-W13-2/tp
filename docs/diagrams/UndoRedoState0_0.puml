@@ -7,8 +7,10 @@ skinparam ClassBackgroundColor #FFFFAA
 title Initial state
 
 package States {
-    class State1 as "<u>cc0:CareConnect</u>"
+    class State1 as "<u>ab0:AddressBook</u>"
 }
+State1 -[hidden]right-> State2
+State2 -[hidden]right-> State3
 hide State2
 hide State3
 

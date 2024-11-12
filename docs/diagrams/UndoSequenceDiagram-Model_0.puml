@@ -1,0 +1,23 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":VersionedCareConnect" as VersionedCareConnect MODEL_COLOR
+end box
+
+[-> Model : undoCareConnect()
+activate Model
+
+Model -> VersionedCareConnect : undo()
+activate VersionedCareConnect
+
+VersionedCareConnect -> VersionedCareConnect :resetData(ReadOnlycareConnect)
+VersionedCareConnect --> Model :
+deactivate VersionedCareConnect
+
+[<-- Model
+deactivate Model
+
+@enduml
